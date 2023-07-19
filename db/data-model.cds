@@ -18,4 +18,16 @@ entity ChargingSessions {
     totalEnergyDelivered : Decimal;
   }
 
+entity ChargeX{
+  key id: String;
+  // time: DateTime;
+  price: Integer;
+  co2: Integer;
+}
+
+entity forecast{
+    time:String;
+    co2: Integer;
+}
+
 

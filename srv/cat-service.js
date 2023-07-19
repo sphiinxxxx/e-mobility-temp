@@ -2,7 +2,7 @@ const axios=require("axios");
 var querystring = require('querystring');
 
 const { ChargingSessions } = cds.entities('my.e_mobility');
-
+const {forecast} =cds.entities('my.e_mobility');
 
 
 module.exports= (srv) => {
@@ -42,8 +42,10 @@ module.exports= (srv) => {
         }
       });
       let d= response1.data.value;
+      // console.log(d);
 
       let ans=[];
+      
 
       d.forEach(e => {
         ans.push({
@@ -69,8 +71,8 @@ module.exports= (srv) => {
   //  console.log(f);
 
   const res= await INSERT(ans).into(ChargingSessions);
-  const allChargingSessions = await SELECT.from(ChargingSessions).where({ID:74 });;
   console.log(res);
+  const allChargingSessions = await SELECT.from(ChargingSessions).where({ID:74 });;
   console.log(allChargingSessions);
      return  ans;
       
@@ -80,13 +82,84 @@ module.exports= (srv) => {
     }
     catch(err)
     {
-      // console.log(err);
+      console.log(err);
     }
   }
     )
 
+    srv.on ('READ', 'ChargeX', async ()=>{
+
+    // [
+    //   { id: '64b4ca7139462',
+    //   // time: "2023-07-17 06:45:00",
+    //   price: 30,
+    //   co2: 393}
+    // ]
+     try{ 
+    const resp=await axios.get('https://unternehmertum.mein-bankerl.de/api/price_today.php',{
+    headers: {
+       'Content-Type' : 'application/json'
+    }
+  });
+    let data=resp["data"];
+    // data=JSON.stringify(data);
+    //  data=JSON.stringify(data);
+
+    console.log(data);
+    let ans=[];
+
+    let arr=Array.from(data);
+    // console.log(typeof arr);
+
+   arr.forEach(e =>{
+      ans.push({
+        id:e.id,
+        price:e.price,
+        co2:e.co2
+      })
+    })
+    console.log(ans);
+    return ans;
+     }
+     catch(err){
+      console.log(err);
+     }
+}
+    )
+
+    srv.on ('READ', 'forecast', async ()=>{
+      // [
+      //   { time:"2023-07-18 00:00:00",
+      //     co2: 389}
+  
+      // ]
+
+      const r = await axios.get('https://unternehmertum.mein-bankerl.de/api/co2_forecast_today.php', {
+        headers: {
+          // 'Authorization': `Bearer ${access_token}`,
+          'Content-Type' : 'application/json'
+        }
+      });
+      var data=r.data.data;
+      let ans=[];
+
+      data.forEach(e =>{
+        ans.push({
+          time:e.time,
+          co2:e.co2
+        })
+      })
+
+      const res= await INSERT(ans).into(forecast);
+  console.log(res);
+  // const allChargingSessions = await SELECT.from(forecast).where({ID:74 });;
+  // console.log(allChargingSessions);
+
+      return ans;
+
+      
+    })
     
-   
    }
    
 
@@ -94,15 +167,4 @@ module.exports= (srv) => {
 
   
 
-   axios.post('https://hacks-for-innovation-emo.authentication.eu10.hana.ondemand.com/oauth/token',
-    querystring.stringify({
-      'grant_type': 'client_credentials',
-      'client_id':'sb-5e9a3c03-e7dc-45e4-a96c-8960f5f49059!b195897|emobility-preprod-cpo-emobility!b101280',
-      'client_secret': '1f9fd6d3-f323-4224-9419-a5ea6d4fdf33$P2h6etdTnVLDG3gCM-tFFjHD5keBTxHFqk83agq7ty8=',
-    }), {
-      headers: { 
-        "Content-Type": "application/x-www-form-urlencoded"
-      }
-    }).then(function(response) {
-        console.log(response);
-    });
+   
