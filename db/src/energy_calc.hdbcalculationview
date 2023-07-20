@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="energy_calc" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" hierarchyGeneration="SQL" outputViewType="Aggregation" cacheInvalidationPeriod="NONE" enforceSqlExecution="true">
+<descriptions defaultDescription="energy_calc"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="MY_E_MOBILITY_ENERGY">
+    <resourceUri>MY_E_MOBILITY_ENERGY</resourceUri>
+  </DataSource>
+</dataSources>
+<snapshotProcedures/>
+<calculationViews/>
+
+<logicalModel id="MY_E_MOBILITY_ENERGY">
+  <attributes>
+    <attribute id="NUTS3" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="NUTS3"/>
+      <keyMapping columnObjectName="MY_E_MOBILITY_ENERGY" columnName="NUTS3"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures>
+    <measure id="ENERGYMIX" order="2" aggregationType="sum" measureType="simple" restrictionExpressionLanguage="SQL">
+      <descriptions defaultDescription="ENERGYMIX"/>
+      <measureMapping columnObjectName="MY_E_MOBILITY_ENERGY" columnName="ENERGYMIX"/>
+      <exceptionAggregationMetadata/>
+    </measure>
+    <measure id="CO2" order="3" aggregationType="sum" measureType="simple" restrictionExpressionLanguage="SQL">
+      <descriptions defaultDescription="CO2"/>
+      <measureMapping columnObjectName="MY_E_MOBILITY_ENERGY" columnName="CO2"/>
+      <exceptionAggregationMetadata/>
+    </measure>
+  </baseMeasures>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+  <localDimensions/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+    
+  </shapes>
+</layout>
+</Calculation:scenario>

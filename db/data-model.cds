@@ -16,14 +16,25 @@ entity ChargingSessions {
     totalDuration : Integer;
     cumulatedPrice : Decimal;
     totalEnergyDelivered : Decimal;
+    timestamp:Timestamp;
+    status:String;
+    siteId: String;
+    siteAreaId:String;
+    siteAreaName:String;
+    siteName:String;
+    connectorId:Integer;
+    evseCode:String;
+    stateOfCharge: Integer;
+    totalInactivity: Integer;
+    connectorStatus:String;
   }
 
-entity ChargeX{
-  key id: String;
-  // time: DateTime;
-  price: Integer;
-  co2: Integer;
-}
+// entity ChargeX{
+//   key id: String;
+//   // time: DateTime;
+//   price: Integer;
+//   co2: Integer;
+// }
 
 entity forecast{
     time:String;
@@ -31,3 +42,26 @@ entity forecast{
 }
 
 
+entity energy{
+  key nuts3:String;
+  energyMix:Decimal;
+  co2:Decimal;
+}
+
+entity GeoLocation{
+    postalcode:Integer;
+    nuts3:String;
+    districtName:String;
+    regionCode:Integer;
+    regionName:String;
+    municipalityLat:Decimal;
+    municipalityLon:Decimal;
+  }
+
+entity evse{
+    key id:String;
+    index:Integer;
+    code:String;
+    chargingStationId:String;
+    chargingStationName:String;
+  }

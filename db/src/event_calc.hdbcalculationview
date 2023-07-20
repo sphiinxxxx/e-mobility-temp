@@ -1,15 +1,105 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Calculation:scenario xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore"   id="event_calc" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" hierarchyGeneration="SQL" outputViewType="Aggregation" cacheInvalidationPeriod="NONE" enforceSqlExecution="true">
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="event_calc" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" hierarchyGeneration="SQL" outputViewType="Aggregation" cacheInvalidationPeriod="NONE" enforceSqlExecution="true">
 <descriptions defaultDescription="event_calc"/>
 <localVariables/>
 <variableMappings/>
-<dataSources/>
+<dataSources>
+  <DataSource id="MY_E_MOBILITY_CHARGINGSESSIONS">
+    <resourceUri>MY_E_MOBILITY_CHARGINGSESSIONS</resourceUri>
+  </DataSource>
+</dataSources>
+<snapshotProcedures/>
 <calculationViews/>
 
-<logicalModel >
-  <attributes/>
+<logicalModel id="MY_E_MOBILITY_CHARGINGSESSIONS">
+  <attributes>
+    <attribute id="SESSIONID" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="SESSIONID"/>
+      <keyMapping columnObjectName="MY_E_MOBILITY_CHARGINGSESSIONS" columnName="SESSIONID"/>
+    </attribute>
+    <attribute id="CURRENCY" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CURRENCY"/>
+      <keyMapping columnObjectName="MY_E_MOBILITY_CHARGINGSESSIONS" columnName="CURRENCY"/>
+    </attribute>
+  
+    <attribute id="STATUS" order="9" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="STATUS"/>
+      <keyMapping columnObjectName="MY_E_MOBILITY_CHARGINGSESSIONS" columnName="STATUS"/>
+    </attribute>
+    <attribute id="SITEID" order="10" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="SITEID"/>
+      <keyMapping columnObjectName="MY_E_MOBILITY_CHARGINGSESSIONS" columnName="SITEID"/>
+    </attribute>
+    <attribute id="SITEAREAID" order="11" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="SITEAREAID"/>
+      <keyMapping columnObjectName="MY_E_MOBILITY_CHARGINGSESSIONS" columnName="SITEAREAID"/>
+    </attribute>
+    <attribute id="SITEAREANAME" order="12" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="SITEAREANAME"/>
+      <keyMapping columnObjectName="MY_E_MOBILITY_CHARGINGSESSIONS" columnName="SITEAREANAME"/>
+    </attribute>
+    <attribute id="SITENAME" order="13" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="SITENAME"/>
+      <keyMapping columnObjectName="MY_E_MOBILITY_CHARGINGSESSIONS" columnName="SITENAME"/>
+    </attribute>
+    <attribute id="EVSECODE" order="15" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="EVSECODE"/>
+      <keyMapping columnObjectName="MY_E_MOBILITY_CHARGINGSESSIONS" columnName="EVSECODE"/>
+    </attribute>
+    <attribute id="CONNECTORSTATUS" order="18" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CONNECTORSTATUS"/>
+      <keyMapping columnObjectName="MY_E_MOBILITY_CHARGINGSESSIONS" columnName="CONNECTORSTATUS"/>
+    </attribute>
+  </attributes>
   <calculatedAttributes/>
-  <baseMeasures/>
+  <baseMeasures>
+    <measure id="ID" order="1" aggregationType="sum" measureType="simple" restrictionExpressionLanguage="SQL">
+      <descriptions defaultDescription="ID"/>
+      <measureMapping columnObjectName="MY_E_MOBILITY_CHARGINGSESSIONS" columnName="ID"/>
+      <exceptionAggregationMetadata/>
+    </measure>
+    <measure id="PRICEPERKWH" order="3" aggregationType="sum" measureType="simple" restrictionExpressionLanguage="SQL">
+      <descriptions defaultDescription="PRICEPERKWH"/>
+      <measureMapping columnObjectName="MY_E_MOBILITY_CHARGINGSESSIONS" columnName="PRICEPERKWH"/>
+      <exceptionAggregationMetadata/>
+    </measure>
+    <measure id="TOTALDURATION" order="5" aggregationType="sum" measureType="simple" restrictionExpressionLanguage="SQL">
+      <descriptions defaultDescription="TOTALDURATION"/>
+      <measureMapping columnObjectName="MY_E_MOBILITY_CHARGINGSESSIONS" columnName="TOTALDURATION"/>
+      <exceptionAggregationMetadata/>
+    </measure>
+    <measure id="CUMULATEDPRICE" order="6" aggregationType="sum" measureType="simple" restrictionExpressionLanguage="SQL">
+      <descriptions defaultDescription="CUMULATEDPRICE"/>
+      <measureMapping columnObjectName="MY_E_MOBILITY_CHARGINGSESSIONS" columnName="CUMULATEDPRICE"/>
+      <exceptionAggregationMetadata/>
+    </measure>
+    <measure id="TOTALENERGYDELIVERED" order="7" aggregationType="sum" measureType="simple" restrictionExpressionLanguage="SQL">
+      <descriptions defaultDescription="TOTALENERGYDELIVERED"/>
+      <measureMapping columnObjectName="MY_E_MOBILITY_CHARGINGSESSIONS" columnName="TOTALENERGYDELIVERED"/>
+      <exceptionAggregationMetadata/>
+    </measure>
+  
+    <measure id="TIMESTAMP" order="8" aggregationType="min" measureType="simple" restrictionExpressionLanguage="SQL">
+      <descriptions defaultDescription="TIMESTAMP"/>
+      <measureMapping columnObjectName="MY_E_MOBILITY_CHARGINGSESSIONS" columnName="TIMESTAMP"/>
+      <exceptionAggregationMetadata/>
+    </measure>
+    <measure id="CONNECTORID" order="14" aggregationType="sum" measureType="simple" restrictionExpressionLanguage="SQL">
+      <descriptions defaultDescription="CONNECTORID"/>
+      <measureMapping columnObjectName="MY_E_MOBILITY_CHARGINGSESSIONS" columnName="CONNECTORID"/>
+      <exceptionAggregationMetadata/>
+    </measure>
+    <measure id="STATEOFCHARGE" order="16" aggregationType="sum" measureType="simple" restrictionExpressionLanguage="SQL">
+      <descriptions defaultDescription="STATEOFCHARGE"/>
+      <measureMapping columnObjectName="MY_E_MOBILITY_CHARGINGSESSIONS" columnName="STATEOFCHARGE"/>
+      <exceptionAggregationMetadata/>
+    </measure>
+    <measure id="TOTALINACTIVITY" order="17" aggregationType="sum" measureType="simple" restrictionExpressionLanguage="SQL">
+      <descriptions defaultDescription="TOTALINACTIVITY"/>
+      <measureMapping columnObjectName="MY_E_MOBILITY_CHARGINGSESSIONS" columnName="TOTALINACTIVITY"/>
+      <exceptionAggregationMetadata/>
+    </measure>
+  </baseMeasures>
   <calculatedMeasures/>
   <restrictedMeasures/>
   <localDimensions/>
@@ -18,8 +108,6 @@
   <shapes>
     <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
       <upperLeftCorner x="40" y="85"/>
-    </shape>
-    
-  </shapes>
+    </shape></shapes>
 </layout>
 </Calculation:scenario>

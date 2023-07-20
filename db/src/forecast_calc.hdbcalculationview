@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="forecast_calc" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" hierarchyGeneration="SQL" outputViewType="Aggregation" cacheInvalidationPeriod="NONE" enforceSqlExecution="true">
+<descriptions defaultDescription="forecast_calc"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="MY_E_MOBILITY_FORECAST">
+    <resourceUri>MY_E_MOBILITY_FORECAST</resourceUri>
+  </DataSource>
+</dataSources>
+<snapshotProcedures/>
+<calculationViews/>
+
+<logicalModel id="MY_E_MOBILITY_FORECAST">
+  <attributes>
+    <attribute id="TIME" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="TIME"/>
+      <keyMapping columnObjectName="MY_E_MOBILITY_FORECAST" columnName="TIME"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures>
+    <measure id="CO2" order="2" aggregationType="sum" measureType="simple" restrictionExpressionLanguage="SQL">
+      <descriptions defaultDescription="CO2"/>
+      <measureMapping columnObjectName="MY_E_MOBILITY_FORECAST" columnName="CO2"/>
+      <exceptionAggregationMetadata/>
+    </measure>
+  </baseMeasures>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+  <localDimensions/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+    
+  </shapes>
+</layout>
+</Calculation:scenario>
